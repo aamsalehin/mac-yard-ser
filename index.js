@@ -33,6 +33,12 @@ async function run() {
       const product = await productCollection.findOne(query);
       res.send(product);
     });
+    //post new item api
+    app.post("/inventory", async (req, res) => {
+      const newItem = req.body;
+      const result = await productCollection.insertOne(newItem);
+      res.send(result);
+    });
   } finally {
   }
 }
