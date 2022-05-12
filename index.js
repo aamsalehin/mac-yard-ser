@@ -47,11 +47,21 @@ async function run() {
       const result = await productCollection.deleteOne(query);
       res.send(result);
     });
+
     app.put("/inventory/:id", async (req, res) => {
+      const user = req.body;
+
       console.log("hi");
       const id = req.params.id;
-
       const query = { _id: ObjectId(id) };
+
+      const updateDoc = { $set: { quantity: user.newQty } };
+      const result = await productCollection.updateOne(
+        query,
+
+        updateDoc
+      );
+      res.send(result);
     });
   } finally {
   }
