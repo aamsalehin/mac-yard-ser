@@ -26,6 +26,14 @@ async function run() {
       const products = await cursor.toArray();
       res.send(products);
     });
+    //myitem
+    app.get("/myitem", async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const cursor = productCollection.find(query);
+      const products = await cursor.toArray();
+      res.send(products);
+    });
     //single product detail api
     app.get("/inventory/:id", async (req, res) => {
       const id = req.params.id;
@@ -51,7 +59,6 @@ async function run() {
     app.put("/inventory/:id", async (req, res) => {
       const user = req.body;
 
-      console.log("hi");
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
 
@@ -63,6 +70,7 @@ async function run() {
       );
       res.send(result);
     });
+    //
   } finally {
   }
 }
