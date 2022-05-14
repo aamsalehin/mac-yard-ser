@@ -87,7 +87,8 @@ async function run() {
     //post new item api
     app.post("/inventory", async (req, res) => {
       const newItem = req.body;
-      const result = await productCollection.insertOne(newItem);
+      const newItema = { ...newItem, sold: 0 };
+      const result = await productCollection.insertOne(newItema);
       res.send(result);
     });
     //delete one api
