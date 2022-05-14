@@ -105,7 +105,9 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
 
-      const updateDoc = { $set: { quantity: user.newQty, sold: user.newSold } };
+      const updateDoc = {
+        $set: { quantity: user.newQty, sold: parseInt(user.newSold) },
+      };
       const result = await productCollection.updateOne(
         query,
 
